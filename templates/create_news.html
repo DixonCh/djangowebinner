@@ -1,0 +1,36 @@
+{% extends 'base/master.html' %}
+
+{% block title %} Create News{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row">
+        {% include 'component/sidebar.html' %}
+     <div class="col-md-7">
+         <h3>Create News</h3>
+         <form method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+             <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">Title</span>
+              <input type="text" name="title" class="form-control" placeholder="title" aria-describedby="basic-addon1">
+            </div>
+             <label>News</label>
+             <textarea class="form-control" name="content">
+
+             </textarea>
+             <br/>
+             <label>Image</label>
+             <input type="file" name="image">
+             <br/>
+             <select name="cat" class="form-control">
+                 {% for c in cat %}
+                 <option value="{{c.id}}">{{c.title}}</option>
+                  {% endfor %}
+             </select>
+            <br/>
+             <button type="submit" class="btn btn-primary">Save</button>
+         </form>
+     </div>
+    </div>
+  </div>
+{% endblock %}
